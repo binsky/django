@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Search result{% endblock %}
+
+{% block content %}
+    {% if books %}
+        <div name="books_container">
+            {% for book in books %}
+                <p>{{book}}</p>
+                {% if not forloop.last %}
+                    <hr color="grey">
+                {%  endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+         <p>Book not found.</p>
+    {% endif %}
+{% endblock %}
+
+{% block backbutton %}
+    <form name="back" action="/books/">
+        <input type="submit" value="Back">
+    </form>
+{% endblock %}

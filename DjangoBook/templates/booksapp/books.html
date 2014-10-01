@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} Get book by title {% endblock %}
+
+{% block content %}
+    <form name=book_search action="/book/found/" method='post' >
+        {% csrf_token %}
+        <label>
+            Title:
+            <input class = "title" name='title' type='text'>
+        </label>
+        <br>
+
+        <div>
+            <label>
+                Author's first name:
+                <input class="author" name='first_name' type='text'>
+                Last name:
+                <input class="author" name='last_name' type='text'>
+            </label>
+        <br>
+        </div>
+
+        <label>
+            Publisher:
+            <input class="publisher" name='publisher' type='text'>
+        </label>
+        <br>
+        <input type='submit' value='Search'>
+    </form>
+{% endblock %}

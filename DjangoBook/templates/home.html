@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Home page</title>
+    {% load staticfiles %}
+{#  <link rel="stylesheet" type="text/css" href="{% static "DjangoBook/styles/style.css" %}">#}
+    <link rel="stylesheet" type="text/css" href="../../static/styles/style.css">
+</head>
+
+<body>
+  {% include "includes/section.html" %}
+  <form action="/time/" method="post">
+    {% csrf_token %} 
+    <input type="submit" value="Get current time"> 
+  </form>
+    
+  <form action="/time/plus/" method="post">
+    {% csrf_token %}	
+    <p> 
+      Get time in 
+      <input type="text" name="hours">
+      hour(s) 
+      <input type="submit" value="Get">
+    </p>
+  </form>
+
+  <form action="/books/">
+    <input type="submit" value="Book app">
+</body>
+</html>

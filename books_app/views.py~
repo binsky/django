@@ -1,0 +1,16 @@
+from django.shortcuts import render
+from books_app.models import Book
+
+def search_book(request):
+  return render(request, 'booksapp/books.html', {'current_section' : 'Search book'})
+
+
+def book_res(request):
+  title = request.POST.get("title", "")
+  publisher = request.POST.get("publisher", "")
+  if title:
+    books = Book.objects.filter(title__icontains=title)
+  else:
+    books = Book.objects.get(publisher.name=publisher)
+  return render(request, 'booksapp/books_found.html', {'current_section' : 'Search result', 'books' : books})
+
