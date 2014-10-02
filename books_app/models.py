@@ -1,5 +1,5 @@
-
 from django.db import models
+
 
 class Publisher(models.Model):
     name = models.CharField(max_length=30)
@@ -36,9 +36,7 @@ class Book(models.Model):
 
     def __unicode__(self):
         return u'%s by %s (%s, %s)' % (self.title, u", ".join([unicode(a) for a in self.authors.all()]),
-                                        #u", ".join([u"%s %s" % (a.first_name, a.last_name) for a in self.authors.all()]))
-                                        self.publisher.name, self.publication_date)
-
+                                       self.publisher.name, self.publication_date)
 
     class Meta:
         ordering = ['title']

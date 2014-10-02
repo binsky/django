@@ -1,7 +1,7 @@
 # from django.http import HttpResponse
 #from django.template.loader import get_template
 #from django.template import Context
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 import datetime
 
@@ -47,6 +47,23 @@ def display_meta(request):
         # html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v))
     # return HttpResponse('<table>%s</table>' % '\n'.join(html))
     return render(request, 'meta.html', {'meta': zip(k_list, v_list)})
+
+
+def contact_us(request):
+    errors = []
+    if request.method == 'POST':
+        if not request.POST.get('subject', ''):
+            errors.append('Enter a subject.')
+        if not request.POST.get('message', ''):
+            errors.append('Enter a message.')
+        if not errors:
+            send_mail(request.POST['subject'],
+                      request.POST['message'],
+                      request.POST.get('email', 'noreply@example.com'),
+                      ['siteowner@example.com'],
+                      )
+            return HttpResponseRedirect('/contacts/thanks/')
+        return render(request, 'contacts_form.html', {'errors': errors})
 
 
 def home_method(request):
