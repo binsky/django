@@ -2,5 +2,9 @@
     font-size: 80%;
 }
 input[type="submit"] {
-    width: 100px;
+    width: 120px;
+}
+mark {
+    color: red;
+    background: white;
 }

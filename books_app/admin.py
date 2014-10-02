@@ -14,7 +14,12 @@ class BookAdmin(admin.ModelAdmin):
     filter_horizontal = ('authors',)
     # raw_id_fields = ('publisher',)
 
+class PublisherAdmin(admin.ModelAdmin):
+    list_display = ('name', 'country', 'website')
+    list_filter = ('country',)
+    ordering = ('country',)
 
-admin.site.register(Publisher)
+
+admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book, BookAdmin)

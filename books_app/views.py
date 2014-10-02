@@ -7,10 +7,10 @@ def search_book(request):
 
 
 def book_res(request):
-    title = request.POST.get("title", "")
-    publisher = request.POST.get("publisher", "")
-    afname = request.POST.get("first_name", "")
-    alname = request.POST.get("last_name", "")
+    title = request.GET.get("title", "")
+    publisher = request.GET.get("publisher", "")
+    afname = request.GET.get("first_name", "")
+    alname = request.GET.get("last_name", "")
     books = Book.objects.filter(title__icontains=title, authors__first_name__istartswith=afname,
                                 authors__last_name__istartswith=alname, publisher__name__icontains=publisher)
     return render(request, 'booksapp/books_found.html', {'current_section': 'Search result', 'books': books})

@@ -3,8 +3,8 @@
 {% block title %} Get book by title {% endblock %}
 
 {% block content %}
-    <form name=book_search action="/book/found/" method='post' >
-        {% csrf_token %}
+    <form name=book_search action="/book/found/" method='GET' >
+        <!--{% csrf_token %}-->
         <label>
             Title:
             <input class = "title" name='title' type='text'>

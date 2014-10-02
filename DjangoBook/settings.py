@@ -61,8 +61,8 @@ DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'djangobook',
-	'USER': 'root',
-	'PASSWORD': 'jktujdb4',
+    'USER': 'root',
+    'PASSWORD': 'jktujdb4',
     }
 }
 
@@ -85,9 +85,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = ("/Users/broleg/Work/Python/Django/static", )
+STATICFILES_DIRS = ("/Users/broleg/Work/Python/Django/static", "/home/binsky/git/django/static", )
 
 TEMPLATE_DIRS = (
-	# '/Users/broleg/Work/Python/DjangoBook/DjangoBook/templates',
-	os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
+    # '/Users/broleg/Work/Python/DjangoBook/DjangoBook/templates',
+    os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
 )
