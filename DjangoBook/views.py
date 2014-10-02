@@ -49,6 +49,10 @@ def display_meta(request):
     return render(request, 'meta.html', {'meta': zip(k_list, v_list)})
 
 
+def send_mail(subject, message, email, email_so):
+    return None
+
+
 def contact_us(request):
     errors = []
     if request.method == 'POST':
