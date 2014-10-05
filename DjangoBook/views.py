@@ -1,8 +1,10 @@
 #from django.http import HttpResponse
 #from django.template.loader import get_template
 #from django.template import Context
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, render_to_response
+from django.core.mail import send_mail
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import render
+from DjangoBook.forms import ContactForm
 import datetime
 
 #def hello(request):
@@ -49,25 +51,20 @@ def display_meta(request):
     return render(request, 'meta.html', {'meta': zip(k_list, v_list)})
 
 
-def send_mail(subject, message, email, email_so):
-    return None
-
-
 def contact_us(request):
-    errors = []
     if request.method == 'POST':
-        if not request.POST.get('subject', ''):
-            errors.append('Enter a subject.')
-        if not request.POST.get('message', ''):
-            errors.append('Enter a message.')
-        if not errors:
-            send_mail(request.POST['subject'],
-                      request.POST['message'],
-                      request.POST.get('email', 'noreply@example.com'),
-                      ['siteowner@example.com'],
-                      )
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            send_mail(
+                cd['subject'],
+                cd['message'],
+                cd.get('email', 'noreply@gmail.com'),
+                ['gobrol@gmail.com'])
             return HttpResponseRedirect('/contacts/thanks/')
-        return render(request, 'contacts_form.html', {'errors': errors})
+    else:
+        form = ContactForm()
+    return render(request, 'contacts_form.html', {'form': form, 'current_section': 'Contact us'})
 
 
 def home_method(request):
