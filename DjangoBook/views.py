@@ -63,8 +63,10 @@ def contact_us(request):
                 ['gobrol@gmail.com'])
             return HttpResponseRedirect('/contacts/thanks/')
     else:
-        form = ContactForm()
-    return render(request, 'contacts_form.html', {'form': form, 'current_section': 'Contact us'})
+        form = ContactForm(
+            initial={'subject': 'Cool!'}
+        )
+    return render(request, 'contact_form.html', {'form': form, 'current_section': 'Contact us'})
 
 
 def home_method(request):
