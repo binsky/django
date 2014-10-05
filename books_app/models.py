@@ -33,6 +33,7 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, blank=True)
     publication_date = models.DateField(blank=True, null=True)
+    some = 'test'
 
     def __unicode__(self):
         return u'%s by %s (%s, %s)' % (self.title, u", ".join([unicode(a) for a in self.authors.all()]),
