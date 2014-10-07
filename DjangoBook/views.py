@@ -38,17 +38,15 @@ def future(request, offset=0):
 
 
 def display_meta(request):
-    values = request.META.items()
-    values.sort()
-    html = []
-    k_list = []
-    v_list = []
-    for k, v in values:
-        k_list.append(k)
-        v_list.append(v)
-        # html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v))
-    # return HttpResponse('<table>%s</table>' % '\n'.join(html))
-    return render(request, 'meta.html', {'meta': zip(k_list, v_list)})
+    # values = request.META.items()
+    # values.sort()
+    # k_list = []
+    # v_list = []
+    # for k, v in values:
+    #     k_list.append(k)
+    #     v_list.append(v)
+    # return render(request, 'meta.html', {'meta': zip(k_list, v_list)})
+    return render(request, 'meta.html', {'meta': request.META.items()})
 
 
 def contact_us(request):
